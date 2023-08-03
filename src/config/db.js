@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import 'dotenv/config'
 
-mongoose.connect("mongodb+srv://viniciusheckert434:V1i2n3i4@portal-rh.sehbi3a.mongodb.net/portal-rh")
+mongoose.connect(process.env.SETTINGS_DADABASE)
 
 const db = mongoose.connection
 
