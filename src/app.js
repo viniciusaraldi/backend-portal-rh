@@ -5,6 +5,7 @@ import elogios from './routes/elogioRoutes.js'
 import criticas from './routes/criticaRoutes.js'
 import usuarios from './routes/usuarioRoutes.js'
 import cors from 'cors'
+import roles from './routes/rolesRoutes.js'
 import 'dotenv/config'
 
 db.on("error", console.log.bind(console, "Erro de conexão"))
@@ -18,7 +19,8 @@ app.use(
     sugestao,
     elogios,
     criticas,
-    usuarios
+    roles,
+    usuarios,
 )
 
 

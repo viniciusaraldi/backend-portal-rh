@@ -11,23 +11,23 @@ class usuarioController {
         try {
             const { usuario, password, role } = req.body;
             const user = await usuarios.findOne({
-                usuario: usuario
-            });
-            try {
-                if (user) {
+                usuario: usuario,
+                role: role
+            }).populate("role")
+            if(user) {
+                try {
                     const correctPassword = await bcrypt.compare(password, user.password)
                     if (correctPassword) {
                         const token = jwt.sign({usuario: usuario}, secret_key)
                         return res.status(200).send({message: token})
-                    } else {
-                        return res.status(401).send({message: "Senha Inválida, por favor verifique!"})
-                    }
-                } else {
-                    return res.status(401).send({message: "Senha Inválida, por favor verifique"})
+                    } 
+                } catch (err) {
+                    return res.status(401).send({Erro: "Credenciais Erradas" + err})
                 }
-            } catch (err) {
-                return res.status(500).send({Erro: "Erro ao validar usuario " + err})
+            } else {
+                return res.status(404).send({message: "usuario não encontrado!"})
             }
+            
         } catch (err) {
             return res.status(500).send({Erro: "Erro ao acessar tela de Login " + err})
         }
@@ -45,7 +45,8 @@ class usuarioController {
             });
 
             const dadosEnvio = await newUser.save()
-            return res.status(201).send(dadosEnvio)
+            const userRole = await usuarios.findById(dadosEnvio._id).populate('role');
+            return res.status(201).json(userRole)
         } catch (err) {
             return res.status(500).send({erro: "Erro ao adicionar usuario => "+err})
         }

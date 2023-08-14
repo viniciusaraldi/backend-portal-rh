@@ -12,7 +12,7 @@ async function verificaToken(req, res, next) {
 
     try {
         const decoded = jwt.verify(token.split(" ")[1], secret_key)
-        console.log(decoded)
+        // console.log(decoded)
         return next();
     } catch(err) {
         return res.status(401).send({erro: "Token inválido => "+err})

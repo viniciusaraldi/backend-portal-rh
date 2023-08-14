@@ -4,9 +4,9 @@ class criticaController {
     static listagemCriticas = async (req, res) => {
         try {
             const dados = await critica.find()
-            res.status(200).send(dados) 
+            return res.status(200).send(dados) 
         }  catch(err) {
-            res.status(500).send(err)
+            return res.status(500).send(err)
         }
     }
 
@@ -14,9 +14,9 @@ class criticaController {
         try {
             const id = await req.params.id
             const dados = await critica.findById(id)
-            res.status(200).send(dados)
+            return res.status(200).send(dados)
         } catch(err) {
-            res.status(500).send(err)
+            return res.status(500).send(err)
         }
 
     }
@@ -25,9 +25,9 @@ class criticaController {
         try {
             const dados = new critica(req.body)
             const dadosEnvio = await dados.save()
-            res.status(201).send(dadosEnvio)
+            return res.status(201).send(dadosEnvio)
         }  catch(err) {
-            res.status(500).send(err)
+            return res.status(500).send(err)
         }
 
     }
@@ -36,9 +36,9 @@ class criticaController {
         try {
             const id = await req.params.id
             const dados = await critica.findByIdAndUpdate(id, req.body)
-            res.status(200).send(dados)
+            return res.status(200).send(dados)
         }  catch(err) {
-            res.status(500).send(err)
+            return res.status(500).send(err)
         }
 
     }
@@ -47,9 +47,9 @@ class criticaController {
         try {
             const id = req.params.id
             const dados = await critica.findByIdAndDelete(id)
-            res.status(200).send(dados)
+            return res.status(200).send(dados)
         } catch(err) {
-            res.status(500).send(err)
+            return res.status(500).send(err)
         }
     }
 
