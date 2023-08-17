@@ -6,7 +6,7 @@ Este projeto, Portal Grupo RM, foi pensado e centrado para funcionários ativos 
 
 ## Instruções:
 
--> Pré-requisito: 
+Pré-requisito: 
 
 ### Node.js
     Instale as dependências para rodar em ambiente local: 
