@@ -7,7 +7,7 @@ async function verificaToken(req, res, next) {
     const token = await req.headers.authorization;
 
     if(!token) {
-        return res.status(401).send({message: "Token não fornecido!"})
+        return res.status(401).json({message: "Token não fornecido!"})
     }
 
     try {
@@ -15,7 +15,7 @@ async function verificaToken(req, res, next) {
         // console.log(decoded)
         return next();
     } catch(err) {
-        return res.status(401).send({erro: "Token inválido => "+err})
+        return res.status(401).json({erro: "Token inválido => "+err})
     }
 }
 

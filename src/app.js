@@ -4,6 +4,7 @@ import sugestao from './routes/sugestaoRoutes.js'
 import elogios from './routes/elogioRoutes.js'
 import criticas from './routes/criticaRoutes.js'
 import usuarios from './routes/usuarioRoutes.js'
+import cardapios from './routes/cardapioRoutes.js'
 import cors from 'cors'
 import roles from './routes/rolesRoutes.js'
 import 'dotenv/config'
@@ -21,6 +22,7 @@ app.use(
     criticas,
     roles,
     usuarios,
+    cardapios,
 )
 
 

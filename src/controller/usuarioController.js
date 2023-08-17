@@ -20,16 +20,17 @@ class usuarioController {
                     if (correctPassword) {
                         const token = jwt.sign({usuario: usuario}, secret_key)
                         return res.status(200).send({message: token})
-                    } 
+                    } else {
+                        return res.status(404).send({message: "Senha incorreta!"})
+                    }
                 } catch (err) {
                     return res.status(401).send({Erro: "Credenciais Erradas" + err})
                 }
             } else {
                 return res.status(404).send({message: "usuario não encontrado!"})
-            }
-            
+            }   
         } catch (err) {
-            return res.status(500).send({Erro: "Erro ao acessar tela de Login " + err})
+            return res.status(500).json({Erro: "Erro ao acessar tela de Login " + err})
         }
     }
 
@@ -49,6 +50,27 @@ class usuarioController {
             return res.status(201).json(userRole)
         } catch (err) {
             return res.status(500).send({erro: "Erro ao adicionar usuario => "+err})
+        }
+    }
+
+    static reseteSenhaUsuario = async (req, res) => {
+        try {
+            const {usuario, role, password} = await req.body
+            const saltRounds = 10;
+            const hashSenha = await bcrypt.hash(password, saltRounds)
+            const usuarioDados = await usuarios.findOneAndUpdate({
+                usuario: usuario,
+                role: role
+            }, {
+                password: hashSenha
+            })
+            if (usuarioDados) {
+                return res.status(200).send({message: "Atualizado com sucesso!"})
+            } else {
+                return res.status(404).send({message: "Usuario não encontrado!"})
+            }
+        } catch (err) {
+            return res.status(500).send({message: "Erro de servidor: " + err})
         }
     }
 }
