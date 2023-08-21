@@ -1,1 +1,1 @@
-web: git start
+web: npm start
