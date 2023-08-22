@@ -4,6 +4,9 @@ class elogioController {
     static listagemElogios = async (req, res) => {
         try {
             const dados = await elogio.find()
+            if (!dados) {
+                return res.status(404).send({message: "Dados não encontrados!"})
+            }
             return res.status(200).send(dados) 
         }  catch(err) {
             return res.status(500).send(err)
@@ -14,6 +17,9 @@ class elogioController {
         try {
             const id = await req.params.id
             const dados = await elogio.findById(id)
+            if (!dados) {
+                return res.status(404).send({message: "Dados não encontrados!"})
+            }
             return res.status(200).send(dados)
         } catch(err) {
             return res.status(500).send(err)
@@ -36,6 +42,9 @@ class elogioController {
         try {
             const id = await req.params.id
             const dados = await elogio.findByIdAndUpdate(id, req.body)
+            if (!dados) {
+                return res.status(404).send({message: "Dados não encontrados!"})
+            }
             return res.status(200).send(dados)
         }  catch(err) {
             return res.status(500).send(err)
@@ -47,6 +56,9 @@ class elogioController {
         try {
             const id = req.params.id
             const dados = await elogio.findByIdAndDelete(id)
+            if (!dados) {
+                return res.status(404).send({message: "Dados não encontrados!"})
+            }
             return res.status(200).send(dados)
         } catch(err) {
             return res.status(500).send(err)

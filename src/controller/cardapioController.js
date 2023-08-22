@@ -5,6 +5,9 @@ class cardapioController {
     static listagemCardapios = async (req, res) => {
         try {
             const dados = await cardapios.find()
+            if (!dados) {
+                return res.status(404).send({message: "Dados não encontrados!"})
+            }
             return res.status(200).json(dados)
         } catch (err) {
             return res.status(500).send({message: `Erro: ${err}`})
@@ -15,6 +18,9 @@ class cardapioController {
         try {
             const {id} = req.params
             const dados = await cardapios.findById(id)
+            if (!dados) {
+                return res.status(404).send({message: "Dados não encontrados!"})
+            }
             return res.status(200).json(dados)
         } catch (err) {
             return res.status(500).send({message: `Erro: ${err}`})
