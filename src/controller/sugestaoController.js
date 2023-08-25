@@ -1,7 +1,7 @@
 import sugestao from "../models/Sugestao.js";
 
 class sugestaoController {
-    static listagemSugestao = async (req, res) => {
+    static listagemSugestao = async (req, res, next) => {
         try {
             const dados = await sugestao.find()
             if (!dados) {
@@ -9,11 +9,11 @@ class sugestaoController {
             }
             return res.status(200).send(dados) 
         }  catch(err) {
-            return res.status(500).send(err)
+            return next(err, req, res)
         }
     }
 
-    static listagemSugestaoId = async (req, res) => {
+    static listagemSugestaoId = async (req, res, next) => {
         try {
             const id = await req.params.id
             const dados = await sugestao.findById(id)
@@ -22,23 +22,22 @@ class sugestaoController {
             }
             return res.status(200).send(dados)
         } catch(err) {
-            return res.status(500).send(err)
+            return next(err, req, res)
         }
-
     }
 
-    static adicionaSugestao = async (req, res) => {
+    static adicionaSugestao = async (req, res, next) => {
         try {
             const dados = new sugestao(req.body)
             const dadosEnvio = await dados.save()
             return res.status(201).send(dadosEnvio)
         }  catch(err) {
-            return res.status(500).send(err)
+            return next(err, req, res)
         }
 
     }
 
-    static atualizaSugestao = async (req, res) => {
+    static atualizaSugestao = async (req, res, next) => {
         try {
             const id = await req.params.id
             const dados = await sugestao.findByIdAndUpdate(id, req.body)
@@ -47,12 +46,12 @@ class sugestaoController {
             }
             return res.status(200).send(dados)
         }  catch(err) {
-            return res.status(500).send(err)
+            return next(err, req, res)
         }
 
     }
 
-    static deletaSugestao = async (req, res) => {
+    static deletaSugestao = async (req, res, next) => {
         try {
             const id = req.params.id
             const dados = await sugestao.findByIdAndDelete(id)
@@ -61,7 +60,7 @@ class sugestaoController {
             }
             return res.status(200).send(dados)
         } catch(err) {
-            return res.status(500).send(err)
+            return next(err, req, res)
         }
     }
 

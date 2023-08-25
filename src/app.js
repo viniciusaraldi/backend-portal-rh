@@ -8,6 +8,7 @@ import cardapios from './routes/cardapioRoutes.js'
 import cors from 'cors'
 import roles from './routes/rolesRoutes.js'
 import 'dotenv/config'
+import erroSolicitacao from './middleware/erroSolicitacao.js'
 
 db.on("error", console.log.bind(console, "Erro de conexão"))
 db.once("open", () =>  console.log("Sucesso ao conectar com o Banco de Dados"))
@@ -23,6 +24,7 @@ app.use(
     roles,
     usuarios,
     cardapios,
+    erroSolicitacao,
 )
 
 

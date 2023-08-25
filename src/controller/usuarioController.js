@@ -30,7 +30,7 @@ class usuarioController {
                 return res.status(404).send({message: "usuario não encontrado!"})
             }   
         } catch (err) {
-            return res.status(500).json({Erro: "Erro ao acessar tela de Login " + err})
+            return res.status(500).json({Erro: "Erro ao acessar tela de Login: " + err})
         }
     }
 
@@ -49,11 +49,11 @@ class usuarioController {
             const userRole = await usuarios.findById(dadosEnvio._id).populate('role');
             return res.status(201).json(userRole)
         } catch (err) {
-            return res.status(500).send({erro: "Erro ao adicionar usuario => "+err})
+            return res.status(500).send({erro: "Erro ao adicionar usuario: "+err})
         }
     }
 
-    static reseteSenhaUsuario = async (req, res) => {
+    static reseteSenhaUsuario = async (req, res, next) => {
         try {
             const {usuario, role, password} = await req.body
             const saltRounds = 10;
@@ -70,7 +70,7 @@ class usuarioController {
                 return res.status(404).send({message: "Usuario não encontrado!"})
             }
         } catch (err) {
-            return res.status(500).send({message: "Erro de servidor: " + err})
+            return next(err, req, res)
         }
     }
 }

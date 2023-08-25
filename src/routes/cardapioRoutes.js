@@ -6,6 +6,7 @@ const routes = express.Router()
 
 routes
     .get("/cardapios", cardapioController.listagemCardapios)
+    .get("/cardapios/busca", cardapioController.listagemCardapiosPorFiltro)
     .get("/cardapios/:id", cardapioController.listagemCardapiosPorId)
     .post("/cardapios", verificaToken, cardapioController.adicionaCardapios)
     .put("/cardapios/:id", verificaToken, cardapioController.atualizaCardapios)
