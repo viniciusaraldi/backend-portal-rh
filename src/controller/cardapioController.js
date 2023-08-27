@@ -4,7 +4,7 @@ class cardapioController {
 
     static listagemCardapios = async (req, res, next) => {
         try {
-            const dados = await cardapios.find()
+            const dados = await cardapios.find().sort({_id: -1})
             if (!dados) {
                 return res.status(404).send({message: "Dados não encontrados!"})
             }
@@ -62,7 +62,11 @@ class cardapioController {
     static atualizaCardapios = async (req, res, next) => {
         try {
             const {id} = req.params
-            const dados = await cardapios.findByIdAndUpdate(id, req.body)
+            const {data, cardapio} = req.body
+            const busca = {}
+            if (data) busca.data = data
+            if (cardapio) busca.cardapio = cardapio
+            const dados = await cardapios.findByIdAndUpdate(id, busca)
             if (!dados) {
                 return res.status(404).send({message: "Dados não encontrados!"})
             }
