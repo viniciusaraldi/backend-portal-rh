@@ -1,6 +1,6 @@
 import express from 'express'
 import elogioController from '../controller/elogioController.js'
-import verificaToken from '../middleware/verificaToken.js'
+import verificaToken from '../middleware/userRoleRh.js'
 
 const routes = express.Router()
 

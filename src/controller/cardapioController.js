@@ -1,23 +1,13 @@
-import { cache } from "../app.js";
 import cardapios from "../models/Cardapio.js";
 
 class cardapioController {
 
     static listagemCardapios = async (req, res, next) => {
         try {
-            const cacheKey = 'cardapios';
-            const cacheData = cache.get(cacheKey)
-
-            if (cacheData) {
-                return res.status(200).send(cacheData)
-            }
-
             const dados = await cardapios.find();
             if (!dados) {
                 return res.status(404).send({message: "Dados não encontrados!"})
             }
-
-            cache.set(cacheKey, dados, 3600)
             return res.status(200).json(dados)
         } catch (err) {
             return next(err, req, res)
@@ -39,14 +29,15 @@ class cardapioController {
 
     static listagemCardapiosPorFiltro = async (req, res, next) => {
         try {
-            const {data, cardapio} = req.query
+            const { data, cardapio } = req.query
             const busca = {}
 
-            if (data) busca.data = data
-            if (cardapio) busca.cardapio = cardapio
+            if (data) busca.data = {$regex: data, $options: 'i'}
+            if (cardapio) busca.cardapio = {$regex: cardapio, $options: 'i'}
 
             const dados = await cardapios.find(busca)
-            if (!dados) {
+
+            if (!dados || dados.length === 0) {
                 return res.status(404).send({message: "Dados não encontrados!"})
             }
             return res.status(200).json(dados)

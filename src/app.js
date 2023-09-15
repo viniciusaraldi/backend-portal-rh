@@ -12,6 +12,8 @@ import usuarios from './routes/usuarioRoutes.js'
 import cardapios from './routes/cardapioRoutes.js'
 import roles from './routes/rolesRoutes.js'
 import erroSolicitacao from './middleware/erroSolicitacao.js'
+import feedbacks from './routes/feedbackRoutes.js'
+import novidades from './routes/novidadeRoutes.js'
 
 db.on("error", console.log.bind(console, "Erro de conexão"))
 db.once("open", () =>  console.log("Sucesso ao conectar com o Banco de Dados"))
@@ -22,6 +24,8 @@ export const cache = new NodeCache()
 app.use(
     cors(),
     express.json(),
+    novidades,
+    feedbacks,
     sugestao,
     elogios,
     criticas,

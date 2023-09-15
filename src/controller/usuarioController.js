@@ -18,7 +18,10 @@ class usuarioController {
                 try {
                     const correctPassword = await bcrypt.compare(password, user.password)
                     if (correctPassword) {
-                        const token = jwt.sign({usuario: usuario}, secret_key)
+                        const token = jwt.sign({
+                            usuario: usuario,
+                            role: role
+                        }, secret_key)
                         return res.status(200).send({message: token})
                     } else {
                         return res.status(404).send({message: "Senha incorreta!"})

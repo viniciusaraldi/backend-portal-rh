@@ -1,6 +1,6 @@
 import express from 'express'
 import cardapioController from '../controller/cardapioController.js'
-import verificaToken from '../middleware/verificaToken.js'
+import verificaToken from '../middleware/userRoleRt.js'
 
 const routes = express.Router()
 

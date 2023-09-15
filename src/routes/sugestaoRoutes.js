@@ -1,6 +1,6 @@
 import express from 'express'
 import sugestaoController from '../controller/sugestaoController.js'
-import verificaToken from '../middleware/verificaToken.js'
+import verificaToken from '../middleware/userRoleRh.js'
 
 const routes = express.Router()
 
