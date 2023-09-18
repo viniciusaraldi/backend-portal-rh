@@ -16,7 +16,7 @@ class feedbacksController {
 
     static listagemFeedbacksId = async (req, res, next) => {
         try {
-            const id = await req.params.id
+            const {id} = await req.params
             const dados = await feedbacks.findById(id)
             if (!dados) {
                 return res.status(404).send({message: "Feedback não encontrado!"})
@@ -40,7 +40,7 @@ class feedbacksController {
 
     static atualizaFeedbacks = async (req, res, next) => {
         try {
-            const id = req.params.id
+            const {id} = req.params
             const infos = req.body
             if (!infos || infos.length === 0) {
                 return res.status(404).send({message: "Dados não informados!"})
@@ -58,7 +58,7 @@ class feedbacksController {
 
     static deletaFeedbacks = async (req, res, next) => {
         try {
-            const id = req.params.id
+            const {id} = req.params
             const dados = await feedbacks.findByIdAndDelete(id)
             if (!dados) {
                 return res.status(404).send({message: "Feedback não encontrado!"})
