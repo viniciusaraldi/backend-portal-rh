@@ -1,5 +1,4 @@
 import feedbacks from "../models/Feedback.js";
-import { cache } from "../app.js";
 
 class feedbacksController {
     static listagemFeedbacks = async (req, res, next) => {

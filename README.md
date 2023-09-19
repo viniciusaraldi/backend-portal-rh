@@ -29,30 +29,12 @@ Pré-requisito:
 
 - Listagem de Rotas/Endpoints disponiveis:
 
-    - Sugestão:
-        - GET */sugestoes/* => Pega todas as sugestões
-        - GET */sugestoes/:id* => Pega sugestão pelo id passado como parametro
-        - POST */sugestoes/* => Inclui sugestão
-        - PUT */sugestoes/:id* => Atualiza sugestão conforme id passado como parametro
-        - DELETE */sugestoes/:id* => Deleta sugestão conforme id passado como parametro
-
-    ---
-
-    - Elogio:
-        - GET */elogios/* => Pega todas as elogios
-        - GET */elogios/:id* => Pega elogio pelo id passado como parametro
-        - POST */elogios/* => Inclui elogio
-        - PUT */elogios/:id* => Atualiza elogio conforme id passado como parametro
-        - DELETE */elogios/:id* => Deleta elogio conforme id passado como parametro
-
-    ---
-
-    - Critica:
-        - GET */criticas/* => Pega todas as criticas
-        - GET */criticas/:id* => Pega critica pelo id passado como parametro
-        - POST */criticas/* => Inclui critica
-        - PUT */criticas/:id* => Atualiza critica conforme id passado como parametro
-        - DELETE */criticas/:id* => Deleta critica conforme id passado como parametro
+    - Feedbacks:
+        - GET */feedbacks/* => Pega todas as feedbacks
+        - GET */feedbacks/:id* => Pega feedbacks pelo id passado como parametro
+        - POST */feedbacks/* => Inclui feedbacks
+        - PUT */feedbacks/:id* => Atualiza feedbacks conforme id passado como parametro
+        - DELETE */feedbacks/:id* => Deleta feedbacks conforme id passado como parametro
 
     ---
 

@@ -4,7 +4,7 @@ class novidadeController {
 
     static listagemNovidade = async (req, res) => {
         try {
-            const dados = await novidades.find()
+            const dados = await novidades.find().sort({_id: -1}).exec();
             if (!dados || dados.length === 0) {
                 return res.status(404).send({message: "Dados não encontrados!"})
             }
