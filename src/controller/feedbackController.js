@@ -3,7 +3,7 @@ import feedbacks from "../models/Feedback.js";
 class feedbacksController {
     static listagemFeedbacks = async (req, res, next) => {
         try {
-            const dados = await feedbacks.find()
+            const dados = await feedbacks.find().sort({_id: -1}).exec()
             if (!dados || dados.length === 0) {
                 return res.status(404).send({message: "Feedback não encontrados!"})
             }
