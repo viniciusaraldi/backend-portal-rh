@@ -1,6 +1,7 @@
 
 export default function erroSolicitacao(err, req, res, next) {
-    res.status(500).json({
+    console.error(err.stack)
+    res.status(500).send({
         message: "Erro interno de servidor", 
         status: err.message
     });

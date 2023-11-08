@@ -5,6 +5,7 @@ import roles from './rolesRoutes.js'
 import erroSolicitacao from '../middleware/erroSolicitacao.js'
 import feedbacks from './feedbackRoutes.js'
 import novidades from './novidadeRoutes.js'
+import usuarioCalc from './usuarioCalcRoutes.js'
 import express from 'express'
 
 const router = app => {
@@ -16,6 +17,7 @@ const router = app => {
         roles,
         usuarios,
         cardapios,
+        usuarioCalc,
         erroSolicitacao,
     )
 }

@@ -6,7 +6,8 @@ import db from './config/db.js'
 import router from './routes/index.js'
 
 db.on("error", console.log.bind(console, "Erro de conexão"))
-db.once("open", () =>  console.log("Sucesso ao conectar com o Banco de Dados"))
+
+db.once("open", () =>  console.log("Sucesso ao conectar com o Banco de Dados DB"))
 
 const app = express()
 
